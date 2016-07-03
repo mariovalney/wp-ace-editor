@@ -19,7 +19,7 @@ function wae_edit_form_after_title( $post ) {
     if ( post_type_supports( $post->post_type, 'editor' ) ) : ?>
 
         <div id="wp-ace-editor-wrapper">
-            <div id="wp-ace-editor"><?php echo $post->post_content ?></div>
+            <div id="wp-ace-editor"><?php echo esc_attr( $post->post_content ); ?></div>
         </div>
             
         <style type="text/css" media="screen">
@@ -45,14 +45,14 @@ function wae_edit_form_after_title( $post ) {
             }
         </style>
 
-        <script src="<?php echo plugins_url( '/ace-builds/src-noconflict/ace.js', __FILE__ ); ?>" type="text/javascript" charset="utf-8"></script>
+        <script src="<?php echo plugins_url( '/ace-builds/src-noconflict/ace.js', __FILE__ ); ?>" type="text/javascript"></script>
         <script>
             jQuery(document).ready(function($) {
                 var AceEditor = ace.edit("wp-ace-editor");
                 AceEditor.setTheme("ace/theme/monokai");
                 AceEditor.setShowPrintMargin(false);
 
-                AceEditor.getSession().setMode("ace/mode/javascript");
+                AceEditor.getSession().setMode("ace/mode/html");
                 AceEditor.getSession().on('change', function(e) {
                     $('#content').val( AceEditor.getValue() );
                 });
